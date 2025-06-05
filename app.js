@@ -3,6 +3,7 @@ require('dotenv').config();
 const User = require("./src/models/user");
 const Post = require("./src/models/post");
 const Comment = require("./src/models/comment");
+const Logger = require("./src/models/logger");
 
 const clearDatabaseCollections = require("./src/utils/utils");
 
@@ -30,7 +31,7 @@ async function insertComment({ postId, username, content }) {
 async function test() {
   await clearDatabaseCollections();
 
-  console.log('\nIniciando inserção de dados teste...')
+  console.log('Iniciando inserção de dados teste...\n')
 
   const taynara = {
     username: "taynara_dev",
@@ -48,9 +49,17 @@ async function test() {
     bio: "Apaixonada por design e dança",
   }
 
+  const userErro = {
+    username: "vai_dar_erro",
+  }
+
   const post = {
     username: taynara.username,
     content: 'Primeiro post!!',
+  }
+
+  const postErro = {
+    content: 'erro!'
   }
 
   taynara.id = await insertUser(taynara);
@@ -63,9 +72,47 @@ async function test() {
     content: 'É isso aí!'
   };
 
-  await insertComment(comment);
+  const commentErro = {
+    username: talita.username,
+  };
 
-  console.log("\nTestes concluídos");
+  comment.id = await insertComment(comment);
+
+  Logger.test("\nForçando erro ao criar usuário: ");
+  await insertUser(userErro);
+
+  Logger.test("\nForçando erro ao criar post: ");
+  await insertPost(postErro);
+
+  Logger.test("\nForçando erro ao criar comentário: ");
+  await insertComment(commentErro);
+
+  Logger.test('\n-- Usuarios antes da deleção --');
+  await User.find();
+
+  await User.delete({ _id: talita.id });
+
+  Logger.test('\n-- Usuarios depois da deleção --');
+  await User.find();
+
+  Logger.test('\n-- Comentários antes da deleção --');
+  await Comment.find();
+
+  await Comment.delete({ _id: comment.id });
+
+  Logger.test('\n-- Comentários depois da deleção --');
+  await Comment.find();
+
+  Logger.test('\n-- Posts antes da deleção --');
+  await Post.find();
+
+  await Post.delete({ _id: post.id });
+
+  Logger.test('\n-- Posts depois da deleção --');
+  await Post.find();
+
+
+  console.log("\nTestes concluídos!\nConferir arquivo test.txt gerado em src/data");
 }
 
 test();

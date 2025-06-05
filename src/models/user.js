@@ -1,7 +1,9 @@
 const { connect } = require("../database/db");
+const Logger = require("./logger");
 
 class User {
   constructor(username, email, password, name, bio) {
+
     this.username = username;
     this.email = email;
     this.password = password;
@@ -13,13 +15,17 @@ class User {
     try {
       const { db, client } = await connect();
 
+      if (!this.username || !this.email || !this.password || !this.name) {
+        throw new Error("Campos username, email, password e name são obrigatórios.");
+      }
+
       const user = await db.collection("users").findOne({ username: this.username });
 
       if (user) {
-        console.log(`Usuário '${this.username}' já cadastrado.`);
+        Logger.log(`Usuário '${this.username}' já cadastrado.`);
 
         client.close();
-        return;
+        return user._id;
       }
 
       const now = new Date();
@@ -34,11 +40,40 @@ class User {
         updatedDate: now,
       });
 
-      console.log("Usuário inserido:", result.insertedId);
+      Logger.test("Usuário inserido: ", result.insertedId);
 
       client.close();
+      return result.insertedId;
     } catch (error) {
-      console.log("Erro ao inserir usuário:", error);
+      Logger.log("Erro ao inserir usuário: " + error);
+    }
+  }
+
+
+  static async find(filter = {}) {
+    try {
+      const { db, client } = await connect();
+      const users = await db.collection("users").find(filter).toArray();
+
+      Logger.test("Usuários encontrados: ", users);
+
+      client.close();
+      return users;
+    } catch (error) {
+      Logger.log("Erro ao buscar usuários: " + error);
+      return [];
+    }
+  }
+
+  static async delete(filter) {
+    try {
+      const { db, client } = await connect();
+      const result = await db.collection("users").deleteMany(filter);
+
+      Logger.test("Usuários deletados: ", result.deletedCount);
+      client.close();
+    } catch (error) {
+      Logger.log("Erro ao deletar usuários: " + error);
     }
   }
 }

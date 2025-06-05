@@ -1,0 +1,37 @@
+Usuário inserido: "684115e2e5e4b514b9e00bd6"
+Usuário inserido: "684115e2e5e4b514b9e00bd7"
+Post inserido: "684115e2e5e4b514b9e00bd8"
+Comentário inserido: "684115e2e5e4b514b9e00bd9"
+
+Forçando erro ao criar usuário: 
+[2025-06-05T03:58:26.122Z] - Erro ao inserir usuário: Error: Campos username, email, password e name são obrigatórios.
+
+
+Forçando erro ao criar post: 
+[2025-06-05T03:58:26.133Z] - Erro ao inserir post: Error: Campos username e content são obrigatórios.
+
+
+Forçando erro ao criar comentário: 
+[2025-06-05T03:58:26.141Z] - Erro ao comentar: Error: Campos postId, username e content são obrigatórios.
+
+
+-- Usuarios antes da deleção --
+Usuários encontrados: [{"_id":"684115e2e5e4b514b9e00bd6","username":"taynara_dev","email":"taynara.dev@example.com","password":"my_password","name":"Taynara Dev","bio":"Viciada em Euro Truck e Hay Day","createdDate":"2025-06-05T03:58:26.051Z","updatedDate":"2025-06-05T03:58:26.051Z"},{"_id":"684115e2e5e4b514b9e00bd7","username":"talita_leoni","email":"talita.leoni@example.com","password":"my_password","name":"Talita Leoni","bio":"Apaixonada por design e dança","createdDate":"2025-06-05T03:58:26.066Z","updatedDate":"2025-06-05T03:58:26.066Z"}]
+Usuários deletados: 1
+
+-- Usuarios depois da deleção --
+Usuários encontrados: [{"_id":"684115e2e5e4b514b9e00bd6","username":"taynara_dev","email":"taynara.dev@example.com","password":"my_password","name":"Taynara Dev","bio":"Viciada em Euro Truck e Hay Day","createdDate":"2025-06-05T03:58:26.051Z","updatedDate":"2025-06-05T03:58:26.051Z"}]
+
+-- Comentários antes da deleção --
+Comentários encontrados: [{"_id":"684115e2e5e4b514b9e00bd9","postId":"684115e2e5e4b514b9e00bd8","userId":"684115e2e5e4b514b9e00bd7","content":"É isso aí!","createdDate":"2025-06-05T03:58:26.109Z","updatedDate":"2025-06-05T03:58:26.109Z"}]
+Comentários deletados: 1
+
+-- Comentários depois da deleção --
+Comentários encontrados: []
+
+-- Posts antes da deleção --
+Posts encontrados: [{"_id":"684115e2e5e4b514b9e00bd8","userId":"684115e2e5e4b514b9e00bd6","content":"Primeiro post!!","likes":0,"createdDate":"2025-06-05T03:58:26.082Z","updatedDate":"2025-06-05T03:58:26.082Z"}]
+Posts deletados: 1
+
+-- Posts depois da deleção --
+Posts encontrados: []

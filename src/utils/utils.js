@@ -1,6 +1,17 @@
 const { connect } = require("../database/db");
+const fs = require("fs");
+const path = require("path");
 
 async function clearDatabaseCollections() {
+  const testLogFilePath = "src/data/test.txt";
+
+  const dirPath = path.dirname(testLogFilePath);
+
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+  }
+  fs.writeFileSync(testLogFilePath, "");
+
   try {
     const { db, client } = await connect();
 
@@ -12,7 +23,7 @@ async function clearDatabaseCollections() {
 
     client.close();
   } catch (error) {
-    console.log("Erro ao limpar o banco de dados:", error);
+    console.log("Erro ao limpar o banco de dados: " + error);
   }
 }
 

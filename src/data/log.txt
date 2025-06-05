@@ -1,0 +1,11 @@
+[2025-06-05T02:50:43.449Z] - Erro ao buscar usuários: ReferenceError: usuarios is not defined
+[2025-06-05T02:50:43.487Z] - Erro ao buscar usuários: ReferenceError: usuarios is not defined
+[2025-06-05T03:49:15.438Z] - Erro ao inserir usuário: Error:  Erro ao criar usuário: campos username, email, password e name são obrigatórios.
+[2025-06-05T03:49:38.368Z] - Erro ao inserir usuário: Error:  Erro ao criar usuário: campos username, email, password e name são obrigatórios.
+[2025-06-05T03:50:31.785Z] - Erro ao inserir usuário: Error: Campos username, email, password e name são obrigatórios.
+[2025-06-05T03:57:54.545Z] - Erro ao inserir usuário: Error: Campos username, email, password e name são obrigatórios.
+[2025-06-05T03:57:54.553Z] - Erro ao inserir usuário: Error: Campos username, email, password e name são obrigatórios.
+[2025-06-05T03:57:54.562Z] - Erro ao inserir usuário: Error: Campos username, email, password e name são obrigatórios.
+[2025-06-05T03:58:26.122Z] - Erro ao inserir usuário: Error: Campos username, email, password e name são obrigatórios.
+[2025-06-05T03:58:26.133Z] - Erro ao inserir post: Error: Campos username e content são obrigatórios.
+[2025-06-05T03:58:26.141Z] - Erro ao comentar: Error: Campos postId, username e content são obrigatórios.
